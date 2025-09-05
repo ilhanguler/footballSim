@@ -1,0 +1,42 @@
+maç iki yarı şeklinde simüle edilecek.
+takımların morali ve yetenek seviyesi olacak.
+takımlar maç kazandığında morali yükselecek.
+moralin çarpanı düşük, yetenek seviyesinin yüksek olacak.
+simülasyonda iki seçenek bulunacak, birincisi tüm sezonu, ikincisi tur-tur simüle edecek.
+simülasyon servisi verileri veri tabanından alacak ve güncelleyecek.
+
+şans, yetenek, moral
+
+yetenek: integer 0-100 arası -> normalize double 0-1
+moral: double 0-1
+
+şans: double 0-1 (depolanmaz)
+
+double yerine decimal kullanılabilir (daha sonra)
+
+teamStrength = (skill * 0.7) + (morale * 0.2 * skill) + (randomChanceFactor * 0.1 * skill)
+
+homeGoals = (homeStrength + 0.1) * (1.1 - awayStrength) * randomChanceFactor * random(5-10)
+awayGoals = aynısının tersi
+
+gol sayıları en yakın tam sayıya yuvarlanır
+
+if homeWon
+  strengthGapEffect = 0.1 * 10^(-(homeSkill - awaySkill))
+else
+  strengthGapEffect = 0.1 * 10^((homeSkill - awaySkill))
+
+moraleEffectHome = ((homeGoals - awayGoals) / (homeGoals + awayGoals)) * (strengthGapEffect)
+moraleEffectAway = - (moraleEffectHome)
+
+if homeMorale + moraleEffectHome >= 1
+  homeMorale = 1
+
+if homeMorale + moraleEffectHome <= 0
+     homeMorale = 0
+
+same for away
+
+iki takım için de tek bir moral etkisi hesaplanır ki ortalama moralde enflasyon veya deflasyon minimal olsun
+
+

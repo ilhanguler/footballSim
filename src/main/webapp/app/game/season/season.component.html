@@ -1,0 +1,69 @@
+<div class="page-container" *ngIf="season">
+  <h1 class="page-title">{{ season.name }}</h1>
+
+  <div class="tab-navigation">
+    <button class="tab-link" [class.active]="activeTab === 'matches'" (click)="setActiveTab('matches')">Turns & Matches</button>
+    <button class="tab-link" [class.active]="activeTab === 'teams'" (click)="setActiveTab('teams')">Teams</button>
+    <button class="tab-link" [class.active]="activeTab === 'scores'" (click)="setActiveTab('scores')">Scores</button>
+  </div>
+
+  <div class="tab-content">
+    <!-- Turns & Matches Content -->
+    <div class="tab-pane" [class.active]="activeTab === 'matches'">
+      <div *ngFor="let tvm of turnViewModels" class="turn-group">
+        <h2 class="turn-title">{{ tvm.turn.name }}</h2>
+        <div class="match-list-condensed">
+          <a *ngFor="let match of tvm.matches" [routerLink]="['/game/match', match.id]" class="match-item-condensed">
+            <span class="team-name">{{ match.homeTeam?.name }}</span>
+            <span class="match-score">{{ match.homeGoals }} - {{ match.awayGoals }}</span>
+            <span class="team-name">{{ match.awayTeam?.name }}</span>
+          </a>
+        </div>
+        <div *ngIf="tvm.matches.length === 0">
+            <p>No matches for this turn.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teams Content -->
+    <div class="tab-pane" [class.active]="activeTab === 'teams'">
+      <div class="team-grid">
+        <a *ngFor="let team of teams" [routerLink]="['/game/team', team.id]" class="team-card">
+          <!-- Placeholder for team logo -->
+          <div class="team-logo-placeholder"></div>
+          <span class="team-name">{{ team.name }}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scores Content -->
+    <div class="tab-pane" [class.active]="activeTab === 'scores'">
+      <table class="table score-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>Points</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Draws</th>
+            <th>Goals For</th>
+            <th>Goals Against</th>
+            <th>Goal Difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let score of scores">
+            <td>{{ score.team?.name }}</td>
+            <td>{{ score.points }}</td>
+            <td>{{ score.wins }}</td>
+            <td>{{ score.losses }}</td>
+            <td>{{ score.draws }}</td>
+            <td>{{ score.goalsFor }}</td>
+            <td>{{ score.goalsAgainst }}</td>
+            <td>{{ score.goalDifference }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

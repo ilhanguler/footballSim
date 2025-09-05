@@ -1,0 +1,43 @@
+<div class="jh-card" *ngIf="team">
+  <div class="team-header">
+    <div class="team-logo-placeholder"></div>
+    <h1 class="team-name">{{ team.name }}</h1>
+  </div>
+
+  <div class="team-body">
+    <h2 jhiTranslate="jhipsterSampleApplication.team.matches.title">Latest Matches</h2>
+    <div *ngIf="sortedMatches && sortedMatches.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th jhiTranslate="jhipsterSampleApplication.match.matchDate">Date</th>
+            <th jhiTranslate="jhipsterSampleApplication.match.homeTeam">Home Team</th>
+            <th jhiTranslate="jhipsterSampleApplication.match.awayTeam">Away Team</th>
+            <th jhiTranslate="jhipsterSampleApplication.match.score">Score</th>
+            <th *ngIf="isAdmin">This Team Morale (Before + Change)</th>
+            <th *ngIf="isAdmin">Rival Team Morale (Before + Change)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let match of sortedMatches">
+            <td>{{ match.matchDate | formatMediumDate }}</td>
+            <td>{{ match.homeTeam?.name }}</td>
+            <td>{{ match.awayTeam?.name }}</td>
+            <td>{{ match.homeGoals }} - {{ match.awayGoals }}</td>
+            <td *ngIf="isAdmin">
+              {{ getMoraleBeforeForMatchAndTeam(match.id, team?.id) | number : '1.2-2' }} +
+              ({{ getMoraleChangeForMatchAndTeam(match.id, team?.id) | number : '1.2-2' }})
+            </td>
+            <td *ngIf="isAdmin">
+              {{ getMoraleBeforeForMatchAndTeam(match.id, getRivalTeamId(match)) | number : '1.2-2' }} +
+              ({{ getMoraleChangeForMatchAndTeam(match.id, getRivalTeamId(match)) | number : '1.2-2' }})
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="!sortedMatches || sortedMatches.length === 0" class="alert alert-warning">
+      <span jhiTranslate="jhipsterSampleApplication.team.matches.notFound">No matches found for this team.</span>
+    </div>
+  </div>
+</div>

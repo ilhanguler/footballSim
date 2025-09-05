@@ -1,0 +1,6 @@
+implement DTO
+implement pagination
+advanced routing and data viewing for UI
+auto calculation of certain tables such as score table
+
+homepage component too many requests on init

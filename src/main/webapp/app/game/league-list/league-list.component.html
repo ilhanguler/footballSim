@@ -1,0 +1,9 @@
+<div class="page-container">
+  <h1>Leagues</h1>
+  <div class="list-container">
+    <a *ngFor="let league of leagues" [routerLink]="['/game/league', league.id]" class="list-item">
+      <span>{{ league.name }}</span>
+      <span class="chevron">&#9654;</span>
+    </a>
+  </div>
+</div>

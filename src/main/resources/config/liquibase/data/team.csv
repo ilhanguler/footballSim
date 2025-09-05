@@ -1,0 +1,401 @@
+id;name
+1;Real Madrid
+2;Barcelona
+3;Atlético Madrid
+4;Sevilla
+5;Valencia
+6;Villarreal
+7;Real Sociedad
+8;Athletic Bilbao
+9;Real Betis
+10;Celta de Vigo
+11;Getafe
+12;Granada
+13;Osasuna
+14;Cádiz
+15;Alavés
+16;Levante
+17;Elche
+18;Mallorca
+19;Espanyol
+20;Rayo Vallecano
+21;Galatasaray
+22;Fenerbahçe
+23;Beşiktaş
+24;Trabzonspor
+25;Başakşehir
+26;Sivasspor
+27;Alanyaspor
+28;Hatayspor
+29;Gaziantep FK
+30;Konyaspor
+31;Antalyaspor
+32;Göztepe
+33;Rizespor
+34;Kayserispor
+35;Karagümrük
+36;Adana Demirspor
+37;Kasımpaşa
+38;Yeni Malatyaspor
+39;Altay
+40;Giresunspor
+41;Manchester United
+42;Liverpool
+43;Manchester City
+44;Chelsea
+45;Arsenal
+46;Tottenham Hotspur
+47;Leicester City
+48;West Ham United
+49;Everton
+50;Aston Villa
+51;Leeds United
+52;Newcastle United
+53;Wolverhampton Wanderers
+54;Crystal Palace
+55;Southampton
+56;Brighton & Hove Albion
+57;Burnley
+58;Norwich City
+59;Watford
+60;Brentford
+61;Juventus
+62;AC Milan
+63;Inter Milan
+64;Napoli
+65;Roma
+66;Lazio
+67;Atalanta
+68;Fiorentina
+69;Torino
+70;Bologna
+71;Sampdoria
+72;Sassuolo
+73;Udinese
+74;Genoa
+75;Cagliari
+76;Hellas Verona
+77;Empoli
+78;Salernitana
+79;Spezia
+80;Venezia
+81;Bayern Munich
+82;Borussia Dortmund
+83;RB Leipzig
+84;Bayer Leverkusen
+85;Eintracht Frankfurt
+86;Borussia Mönchengladbach
+87;Wolfsburg
+88;Hertha BSC
+89;VfB Stuttgart
+90;SC Freiburg
+91;Union Berlin
+92;Hoffenheim
+93;Mainz 05
+94;FC Augsburg
+95;Arminia Bielefeld
+96;Greuther Fürth
+97;FC Köln
+98;Bochum
+99;Werder Bremen
+100;Schalke 04
+101;Paris Saint-Germain
+102;Marseille
+103;Lyon
+104;AS Monaco
+105;Lille
+106;Rennes
+107;Nice
+108;Lens
+109;Nantes
+110;Strasbourg
+111;Reims
+112;Brest
+113;Montpellier
+114;Angers
+115;Metz
+116;Lorient
+117;Clermont Foot
+118;Troyes
+119;Bordeaux
+120;Saint-Étienne
+121;Ajax
+122;PSV Eindhoven
+123;Feyenoord
+124;AZ Alkmaar
+125;Vitesse
+126;FC Utrecht
+127;FC Twente
+128;Heerenveen
+129;Groningen
+130;PEC Zwolle
+131;Heracles Almelo
+132;Fortuna Sittard
+133;Willem II
+134;Go Ahead Eagles
+135;NEC Nijmegen
+136;SC Cambuur
+137;RKC Waalwijk
+138;Sparta Rotterdam
+139;FC Emmen
+140;De Graafschap
+141;Porto
+142;Benfica
+143;Sporting CP
+144;Braga
+145;Vitória de Guimarães
+146;Moreirense
+147;Santa Clara
+148;Gil Vicente
+149;Marítimo
+150;Paços de Ferreira
+151;Boavista
+152;Estoril
+153;Tondela
+154;Arouca
+155;Belenenses SAD
+156;Famalicão
+157;Vizela
+158;Portimonense
+159;Chaves
+160;Rio Ave
+161;Flamengo
+162;Palmeiras
+163;Atlético Mineiro
+164;São Paulo
+165;Corinthians
+166;Santos
+167;Grêmio
+168;Internacional
+169;Fluminense
+170;Botafogo
+171;Vasco da Gama
+172;Cruzeiro
+173;Bahia
+174;Sport Recife
+175;Ceará
+176;Fortaleza
+177;Athletico Paranaense
+178;Coritiba
+179;Goiás
+180;América Mineiro
+181;Boca Juniors
+182;River Plate
+183;Independiente
+184;Racing Club
+185;San Lorenzo
+186;Vélez Sarsfield
+187;Estudiantes
+188;Lanús
+189;Newell's Old Boys
+190;Rosario Central
+191;Talleres
+192;Defensa y Justicia
+193;Argentinos Juniors
+194;Banfield
+195;Gimnasia y Esgrima
+196;Colón
+197;Unión de Santa Fe
+198;Huracán
+199;Godoy Cruz
+200;Patronato
+201;LA Galaxy
+202;Los Angeles FC
+203;Seattle Sounders FC
+204;Portland Timbers
+205;Atlanta United FC
+206;Inter Miami CF
+207;New York City FC
+208;New York Red Bulls
+209;Toronto FC
+210;D.C. United
+211;Philadelphia Union
+212;Orlando City SC
+213;Columbus Crew
+214;Chicago Fire FC
+215;Sporting Kansas City
+216;FC Dallas
+217;Houston Dynamo FC
+218;Colorado Rapids
+219;Real Salt Lake
+220;San Jose Earthquakes
+221;Kawasaki Frontale
+222;Yokohama F. Marinos
+223;Vissel Kobe
+224;Urawa Red Diamonds
+225;Nagoya Grampus
+226;Kashima Antlers
+227;FC Tokyo
+228;Cerezo Osaka
+229;Gamba Osaka
+230;Sanfrecce Hiroshima
+231;Kashiwa Reysol
+232;Shimizu S-Pulse
+233;Consadole Sapporo
+234;Sagan Tosu
+235;Shonan Bellmare
+236;Vegalta Sendai
+237;Oita Trinita
+238;Tokushima Vortis
+239;Avispa Fukuoka
+240;Yokohama FC
+241;Jeonbuk Hyundai Motors
+242;Ulsan Hyundai
+243;Pohang Steelers
+244;Daegu FC
+245;Suwon Samsung Bluewings
+246;FC Seoul
+247;Incheon United
+248;Gangwon FC
+249;Gwangju FC
+250;Seongnam FC
+251;Jeju United
+252;Suwon FC
+253;Busan IPark
+254;Daejeon Hana Citizen
+255;Gyeongnam FC
+256;Seoul E-Land FC
+257;FC Anyang
+258;Chungnam Asan FC
+259;Bucheon FC 1995
+260;Ansan Greeners FC
+261;Al-Hilal
+262;Al-Nassr
+263;Al-Ittihad
+264;Al-Ahli
+265;Al-Shabab
+266;Al-Ettifaq
+267;Al-Taawoun
+268;Al-Fateh
+269;Al-Raed
+270;Damac
+271;Al-Fayha
+272;Abha
+273;Al-Batin
+274;Al-Hazem
+275;Al-Tai
+276;Al-Qadsiah
+277;Al-Wehda
+278;Al-Faisaly
+279;Al-Adalah
+280;Ohod
+281;Al-Sadd
+282;Al-Duhail
+283;Al-Rayyan
+284;Al-Gharafa
+285;Al-Arabi
+286;Qatar SC
+287;Al-Wakrah
+288;Umm Salal
+289;Al-Khor
+290;Al-Sailiya
+291;Al-Ahli Doha
+292;Al-Markhiya
+293;Al-Shamal
+294;Muaither
+295;Al-Shahaniya
+296;Mesaimeer
+297;Al-Kharaitiyat
+298;Al-Bidda
+299;Lusail City
+300;Al-Waab
+301;Sydney FC
+302;Melbourne Victory
+303;Melbourne City
+304;Western Sydney Wanderers
+305;Adelaide United
+306;Brisbane Roar
+307;Perth Glory
+308;Newcastle Jets
+309;Central Coast Mariners
+310;Wellington Phoenix
+311;Macarthur FC
+312;Western United
+313;Canberra United
+314;Gold Coast United
+315;North Queensland Fury
+316;New Zealand Knights
+317;Tasmania United
+318;South Melbourne
+319;Auckland City
+320;Team Wellington
+321;Celtic
+322;Rangers
+323;Aberdeen
+324;Hibernian
+325;Heart of Midlothian
+326;Dundee United
+327;Motherwell
+328;St Johnstone
+329;Livingston
+330;Ross County
+331;St Mirren
+332;Dundee
+333;Kilmarnock
+334;Hamilton Academical
+335;Partick Thistle
+336;Inverness Caledonian Thistle
+337;Falkirk
+338;Dunfermline Athletic
+339;Queen of the South
+340;Ayr United
+341;Zenit Saint Petersburg
+342;Spartak Moscow
+343;CSKA Moscow
+344;Lokomotiv Moscow
+345;Krasnodar
+346;Rubin Kazan
+347;Dynamo Moscow
+348;Sochi
+349;Rostov
+350;Akhmat Grozny
+351;Ural Yekaterinburg
+352;Krylia Sovetov
+353;Ufa
+354;Arsenal Tula
+355;Nizhny Novgorod
+356;Khimki
+357;Tambov
+358;Rotor Volgograd
+359;Anzhi Makhachkala
+360;Tom Tomsk
+361;Club Brugge
+362;Anderlecht
+363;Standard Liège
+364;Genk
+365;Gent
+366;Royal Antwerp
+367;Charleroi
+368;Zulte Waregem
+369;KV Mechelen
+370;Sint-Truiden
+371;Kortrijk
+372;Oud-Heverlee Leuven
+373;Cercle Brugge
+374;Eupen
+375;Beerschot
+376;Waasland-Beveren
+377;KV Oostende
+378;Mouscron
+379;Lokeren
+380;Westerlo
+381;FC Basel
+382;Young Boys
+383;FC Zürich
+384;Grasshopper
+385;Servette
+386;Lugano
+387;St. Gallen
+388;Sion
+389;Lausanne-Sport
+390;Luzern
+391;Thun
+392;Neuchâtel Xamax
+393;Aarau
+394;Winterthur
+395;Schaffhausen
+396;Vaduz
+397;Chiasso
+398;Yverdon-Sport
+399;Kriens
+400;Stade Lausanne Ouchy

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity TeamGroup.
+    -->
+    <changeSet id="00000000000007-1" author="jhipster">
+        <createTable tableName="team_group">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="turn_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+
+        <createTable tableName="team_group_team">
+            <column name="team_group_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="team_group_id, team_id" tableName="team_group_team"/>
+    </changeSet>
+
+    <changeSet id="00000000000007-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="turn_id"
+                                 baseTableName="team_group"
+                                 constraintName="fk_team_group_turn_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="turn"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_group_id"
+                                 baseTableName="team_group_team"
+                                 constraintName="fk_team_group_team_team_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_group"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="team_group_team"
+                                 constraintName="fk_team_group_team_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+    </changeSet>
+    <changeSet id="00000000000007-3" author="jhipster">
+        <loadData
+                  file="config/liquibase/data/team_group.csv"
+                  separator=";"
+                  tableName="team_group">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="turn_id" type="numeric"/>
+        </loadData>
+        <loadData
+                  file="config/liquibase/data/team_group_team.csv"
+                  separator=";"
+                  tableName="team_group_team">
+            <column name="team_group_id" type="numeric"/>
+            <column name="team_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

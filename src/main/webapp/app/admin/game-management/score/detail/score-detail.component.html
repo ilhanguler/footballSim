@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="score">
+      <h2 data-cy="scoreDetailsHeading"><span>Score</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ score!.id }}</span>
+        </dd>
+        <dt><span>Points</span></dt>
+        <dd>
+          <span>{{ score!.points }}</span>
+        </dd>
+        <dt><span>Wins</span></dt>
+        <dd>
+          <span>{{ score!.wins }}</span>
+        </dd>
+        <dt><span>Losses</span></dt>
+        <dd>
+          <span>{{ score!.losses }}</span>
+        </dd>
+        <dt><span>Draws</span></dt>
+        <dd>
+          <span>{{ score!.draws }}</span>
+        </dd>
+        <dt><span>Goals For</span></dt>
+        <dd>
+          <span>{{ score!.goalsFor }}</span>
+        </dd>
+        <dt><span>Goals Against</span></dt>
+        <dd>
+          <span>{{ score!.goalsAgainst }}</span>
+        </dd>
+        <dt><span>Goal Difference</span></dt>
+        <dd>
+          <span>{{ score!.goalDifference }}</span>
+        </dd>
+        <dt><span>Season</span></dt>
+        <dd>
+          <div *ngIf="score!.season">
+            <a [routerLink]="['/admin/game/season', score!.season.id, 'view']">{{ score!.season.name }}</a>
+          </div>
+        </dd>
+        <dt><span>Team</span></dt>
+        <dd>
+          <div *ngIf="score!.team">
+            <a [routerLink]="['/admin/game/team', score!.team.id, 'view']">{{ score!.team.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin/game/score', score!.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

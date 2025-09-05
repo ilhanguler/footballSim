@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="season">
+      <h2 data-cy="seasonDetailsHeading"><span>Season</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ season!.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ season!.name }}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+          <span>{{ season!.startDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+          <span>{{ season!.endDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Current Turn</span></dt>
+        <dd>
+          <span>{{ season!.currentTurn }}</span>
+        </dd>
+        <dt><span>League</span></dt>
+        <dd>
+          <div *ngIf="season!.league">
+            <a [routerLink]="['/admin/game/league', season!.league.id, 'view']">{{ season!.league.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Teams</span></dt>
+        <dd>
+          <span *ngFor="let teams of season.teams; let last = last">
+            <a [routerLink]="['/admin/game/team', teams?.id, 'view']">{{ teams?.id }}</a>{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin/game/season', season!.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

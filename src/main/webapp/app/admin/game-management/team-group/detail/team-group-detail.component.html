@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="teamGroup">
+      <h2 data-cy="teamGroupDetailsHeading"><span>Team Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ teamGroup!.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ teamGroup!.name }}</span>
+        </dd>
+        <dt><span>Turn</span></dt>
+        <dd>
+          <div *ngIf="teamGroup!.turn">
+            <a [routerLink]="['/admin/game/turn', teamGroup!.turn.id, 'view']">{{ teamGroup!.turn.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Teams</span></dt>
+        <dd>
+          <span *ngFor="let teams of teamGroup.teams; let last = last">
+            <a [routerLink]="['/admin/game/team', teams?.id, 'view']">{{ teams?.id }}</a>{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin/game/team-group', teamGroup!.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Score.
+    -->
+    <changeSet id="00000000000006-1" author="jhipster">
+        <createTable tableName="score">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="points" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="wins" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="losses" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="draws" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="goals_for" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="goals_against" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="goal_difference" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="season_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="team_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000006-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="season_id"
+                                 baseTableName="score"
+                                 constraintName="fk_score_season_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="season"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="score"
+                                 constraintName="fk_score_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+    </changeSet>
+    <changeSet id="00000000000006-3" author="jhipster">
+        <loadData
+                  file="config/liquibase/data/score.csv"
+                  separator=";"
+                  tableName="score">
+            <column name="id" type="numeric"/>
+            <column name="points" type="numeric"/>
+            <column name="wins" type="numeric"/>
+            <column name="losses" type="numeric"/>
+            <column name="draws" type="numeric"/>
+            <column name="goals_for" type="numeric"/>
+            <column name="goals_against" type="numeric"/>
+            <column name="goal_difference" type="numeric"/>
+            <column name="season_id" type="numeric"/>
+            <column name="team_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

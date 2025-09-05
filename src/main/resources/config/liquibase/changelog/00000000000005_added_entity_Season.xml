@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Season.
+    -->
+    <changeSet id="00000000000005-1" author="jhipster">
+        <createTable tableName="season">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="start_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="end_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_turn" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="league_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+
+        <createTable tableName="season_team">
+            <column name="season_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="team_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="season_id, team_id" tableName="season_team"/>
+    </changeSet>
+
+    <changeSet id="00000000000005-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="league_id"
+                                 baseTableName="season"
+                                 constraintName="fk_season_league_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="league"/>
+
+        <addForeignKeyConstraint baseColumnNames="season_id"
+                                 baseTableName="season_team"
+                                 constraintName="fk_season_team_season_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="season"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="season_team"
+                                 constraintName="fk_season_team_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+    </changeSet>
+    <changeSet id="00000000000005-3" author="jhipster">
+        <loadData
+                  file="config/liquibase/data/season.csv"
+                  separator=";"
+                  tableName="season">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="start_date" type="timestamp"/>
+            <column name="end_date" type="timestamp"/>
+            <column name="current_turn" type="numeric"/>
+            <column name="league_id" type="numeric"/>
+        </loadData>
+        <loadData
+                  file="config/liquibase/data/season_team.csv"
+                  separator=";"
+                  tableName="season_team">
+            <column name="season_id" type="numeric"/>
+            <column name="team_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

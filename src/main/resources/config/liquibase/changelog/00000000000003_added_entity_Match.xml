@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Match.
+    -->
+    <changeSet id="00000000000003-1" author="jhipster">
+        <createTable tableName="match">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="home_goals" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="away_goals" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="match_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="turn_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="home_team_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="away_team_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="00000000000003-2" author="jhipster">
+        <addForeignKeyConstraint baseColumnNames="turn_id"
+                                 baseTableName="match"
+                                 constraintName="fk_match_turn_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="turn"/>
+
+        <addForeignKeyConstraint baseColumnNames="home_team_id"
+                                 baseTableName="match"
+                                 constraintName="fk_match_home_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="away_team_id"
+                                 baseTableName="match"
+                                 constraintName="fk_match_away_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+    </changeSet>
+    <changeSet id="00000000000003-3" author="jhipster">
+        <loadData
+                  file="config/liquibase/data/match.csv"
+                  separator=";"
+                  tableName="match">
+            <column name="id" type="numeric"/>
+            <column name="home_goals" type="numeric"/>
+            <column name="away_goals" type="numeric"/>
+            <column name="status" type="string"/>
+            <column name="match_date" type="timestamp"/>
+            <column name="turn_id" type="numeric"/>
+            <column name="home_team_id" type="numeric"/>
+            <column name="away_team_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

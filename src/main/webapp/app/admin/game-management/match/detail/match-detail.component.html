@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="match">
+      <h2 data-cy="matchDetailsHeading"><span>Match</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ match!.id }}</span>
+        </dd>
+        <dt><span>Home Goals</span></dt>
+        <dd>
+          <span>{{ match!.homeGoals }}</span>
+        </dd>
+        <dt><span>Away Goals</span></dt>
+        <dd>
+          <span>{{ match!.awayGoals }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ match!.status }}</span>
+        </dd>
+        <dt><span>Match Date</span></dt>
+        <dd>
+          <span>{{ match!.matchDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Home Team</span></dt>
+        <dd>
+          <div *ngIf="match!.homeTeam">
+            <a [routerLink]="['/admin/game/team', match!.homeTeam.id, 'view']">{{ match!.homeTeam.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Away Team</span></dt>
+        <dd>
+          <div *ngIf="match!.awayTeam">
+            <a [routerLink]="['/admin/game/team', match!.awayTeam.id, 'view']">{{ match!.awayTeam.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Turn</span></dt>
+        <dd>
+          <div *ngIf="match!.turn">
+            <a [routerLink]="['/admin/game/turn', match!.turn.id, 'view']">{{ match!.turn.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/admin/game/match', match!.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

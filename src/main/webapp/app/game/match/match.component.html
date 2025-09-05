@@ -1,0 +1,54 @@
+<div class="page-container" *ngIf="match">
+  <div class="match-header">
+    <div class="team-info">
+      <a [routerLink]="['/game/team', match.homeTeam?.id]" class="team-logo-link">
+        <div class="team-logo-placeholder"></div>
+        <span class="team-name">{{ match.homeTeam?.name }}</span>
+      </a>
+    </div>
+    <div class="match-score-details">
+      <div class="score">{{ match.homeGoals }} - {{ match.awayGoals }}</div>
+      <div class="match-status">{{ match.status }}</div>
+      <div class="match-date">{{ match.matchDate | formatMediumDatetime }}</div>
+    </div>
+    <div class="team-info">
+      <a [routerLink]="['/game/team', match.awayTeam?.id]" class="team-logo-link">
+        <div class="team-logo-placeholder"></div>
+        <span class="team-name">{{ match.awayTeam?.name }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="match-body">
+    <h2>Match Details</h2>
+    <p>Further details about the match will be displayed here.</p>
+  </div>
+
+  <div *ngIf="isAdmin" class="admin-section">
+    <h2>Admin Only Details</h2>
+    <div class="admin-details-grid">
+      <div class="team-stats-container">
+        <h3>Team Stats</h3>
+        <div class="team-stats-columns">
+          <div class="team-stats" *ngIf="homeTeamStats">
+            <h4>{{ match.homeTeam?.name }}</h4>
+            <p>Skill: {{ homeTeamStats.skill }}</p>
+            <p>Current Morale: {{ homeTeamStats.morale | number : '1.2-2' }}</p>
+            <p>Morale on this match: {{ getMoraleBefore(match.homeTeam?.id) | number : '1.2-2' }} + ({{ getMoraleChange(match.homeTeam?.id) | number : '1.2-2' }})</p>
+          </div>
+          <div class="team-stats" *ngIf="awayTeamStats">
+            <h4>{{ match.awayTeam?.name }}</h4>
+            <p>Skill: {{ awayTeamStats.skill }}</p>
+            <p>Current Morale: {{ awayTeamStats.morale | number : '1.2-2' }}</p>
+            <p>Morale on this match: {{ getMoraleBefore(match.awayTeam?.id) | number : '1.2-2' }} + ({{ getMoraleChange(match.awayTeam?.id) | number : '1.2-2' }})</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="simulation-details-container">
+        <h3>Simulation Calculations</h3>
+        <p>Simulation details will be displayed here.</p>
+      </div>
+    </div>
+  </div>
+</div>

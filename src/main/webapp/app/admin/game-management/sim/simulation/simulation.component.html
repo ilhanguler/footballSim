@@ -1,0 +1,103 @@
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'simulation'" (click)="activeTab = 'simulation'">Simulation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'fixture'" (click)="activeTab = 'fixture'">Fixture</a>
+    </li>
+  </ul>
+
+  <div class="tab-content mt-3">
+    <!-- Simulation Tab -->
+    <div class="tab-pane" [class.active]="activeTab === 'simulation'">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="leagueSelect">League</label>
+            <select id="leagueSelect" class="form-control" [(ngModel)]="selectedLeague" (ngModelChange)="onLeagueSelect()">
+              <option [ngValue]="null">Select a League</option>
+              <option *ngFor="let league of leagues" [ngValue]="league">{{ league.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="seasonSelect">Season</label>
+            <select id="seasonSelect" class="form-control" [(ngModel)]="selectedSeason" (ngModelChange)="onSeasonSelect()" [disabled]="!selectedLeague">
+              <option [ngValue]="null">Select a Season</option>
+              <option *ngFor="let season of seasons" [ngValue]="season">{{ season.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="turnSelect">Turn</label>
+            <select id="turnSelect" class="form-control" [(ngModel)]="selectedTurn" [disabled]="!selectedSeason">
+              <option [ngValue]="null">Select a Turn</option>
+              <option *ngFor="let turn of turns" [ngValue]="turn">{{ turn.turnNumber }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-primary mr-2" (click)="simulateTurn()" [disabled]="!selectedTurn || isSimulatingTurn">
+          <span *ngIf="isSimulatingTurn" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="!isSimulatingTurn">Simulate Turn</span>
+        </button>
+        <button class="btn btn-secondary" (click)="simulateSeason()" [disabled]="!selectedSeason || isSimulatingSeason">
+          <span *ngIf="isSimulatingSeason" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="!isSimulatingSeason">Simulate Season</span>
+        </button>
+        <div *ngIf="turnSuccess" class="alert alert-success mt-3" role="alert">
+          Turn simulated successfully! Redirecting to the turn page...
+        </div>
+        <div *ngIf="turnError" class="alert alert-danger mt-3" role="alert">
+          Failed to simulate turn. Please try again.
+        </div>
+        <div *ngIf="seasonSuccess" class="alert alert-success mt-3" role="alert">
+          Season simulated successfully! Redirecting to the season page...
+        </div>
+        <div *ngIf="seasonError" class="alert alert-danger mt-3" role="alert">
+          Failed to simulate season. Please try again.
+        </div>
+      </div>
+    </div>
+
+    <!-- Fixture Tab -->
+    <div class="tab-pane" [class.active]="activeTab === 'fixture'">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fixtureLeagueSelect">League</label>
+            <select id="fixtureLeagueSelect" class="form-control" [(ngModel)]="selectedLeague" (ngModelChange)="onLeagueSelect()">
+              <option [ngValue]="null">Select a League</option>
+              <option *ngFor="let league of leagues" [ngValue]="league">{{ league.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="fixtureSeasonSelect">Season</label>
+            <select id="fixtureSeasonSelect" class="form-control" [(ngModel)]="selectedSeason" [disabled]="!selectedLeague">
+              <option [ngValue]="null">Select a Season</option>
+              <option *ngFor="let season of seasons" [ngValue]="season">{{ season.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3">
+        <button class="btn btn-info" (click)="doFixture()" [disabled]="!selectedSeason || isGeneratingFixture">
+          <span *ngIf="isGeneratingFixture" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          <span *ngIf="!isGeneratingFixture">Do Fixture</span>
+        </button>
+        <div *ngIf="fixtureSuccess" class="alert alert-success mt-3" role="alert">
+          Fixture created successfully! Redirecting to the season page...
+        </div>
+        <div *ngIf="fixtureError" class="alert alert-danger mt-3" role="alert">
+          Failed to create fixture. Please try again.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-score-heading" data-cy="ScoreCreateUpdateHeading">Create or edit a Score</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="col-sm-2 col-form-label" for="field_id">ID</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_points">Points</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="points" id="field_points" data-cy="points" formControlName="points" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_wins">Wins</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="wins" id="field_wins" data-cy="wins" formControlName="wins" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_losses">Losses</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="losses" id="field_losses" data-cy="losses" formControlName="losses" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_draws">Draws</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="draws" id="field_draws" data-cy="draws" formControlName="draws" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_goalsFor">Goals For</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="goalsFor" id="field_goalsFor" data-cy="goalsFor" formControlName="goalsFor" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_goalsAgainst">Goals Against</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="goalsAgainst" id="field_goalsAgainst" data-cy="goalsAgainst" formControlName="goalsAgainst" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_goalDifference">Goal Difference</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" name="goalDifference" id="field_goalDifference" data-cy="goalDifference" formControlName="goalDifference" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_season">Season</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="field_season" data-cy="season" name="season" formControlName="season" [compareWith]="compareSeason">
+              <option [ngValue]="null"></option>
+              <option [ngValue]="seasonOption" *ngFor="let seasonOption of seasonsSharedCollection; trackBy: trackSeasonById">{{ seasonOption.name }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="field_team">Team</label>
+          <div class="col-sm-10">
+            <select class="form-control" id="field_team" data-cy="team" name="team" formControlName="team" [compareWith]="compareTeam">
+              <option [ngValue]="null"></option>
+              <option [ngValue]="teamOption" *ngFor="let teamOption of teamsSharedCollection; trackBy: trackTeamById">{{ teamOption.name }}</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

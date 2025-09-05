@@ -1,0 +1,30 @@
+<div class="page-container" *ngIf="league">
+  <h1 class="page-title">{{ league.name }}</h1>
+
+  <div class="list-container">
+    <div *ngFor="let season of seasons" class="list-item season-item">
+      <a [routerLink]="['/game/season', season.id]">
+        <div class="season-header">
+          <h2>{{ season.name }}</h2>
+          <span class="chevron">&#9654;</span>
+        </div>
+      </a>
+      <div class="details-section">
+        <div class="turns-preview">
+          <h3>Recent Turns</h3>
+          <!-- Placeholder for recent turns -->
+          <p>...</p>
+        </div>
+        <div class="matches-preview">
+          <h3>Recent Matches</h3>
+          <!-- Placeholder for recent matches -->
+          <p>...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="seasons.length === 0">
+    <p>No seasons found for this league.</p>
+  </div>
+</div>

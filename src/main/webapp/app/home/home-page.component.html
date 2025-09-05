@@ -1,0 +1,73 @@
+<div class="home-container">
+  <div class="sidebar">
+    <!-- Date Selector -->
+    <div class="date-selector">
+      <label for="match-date">Select Date:</label>
+      <div class="date-controls">
+        <button (click)="changeDate(-1)" title="Previous Day">&#9664;</button>
+        <input type="date" id="match-date" [(ngModel)]="selectedDate" (change)="onDateChange()">
+        <button (click)="changeDate(1)" title="Next Day">&#9654;</button>
+      </div>
+      <button class="today-btn" (click)="goToToday()">Today</button>
+    </div>
+
+    <!-- View Toggle -->
+    <div class="view-toggle">
+      <label>View by:</label>
+      <div class="btn-group">
+        <button [class.active]="viewMode === 'league'" (click)="setViewMode('league')">League</button>
+        <button [class.active]="viewMode === 'date'" (click)="setViewMode('date')">Date</button>
+      </div>
+    </div>
+
+    <!-- Placeholder for future additions -->
+    <div class="reserved-space">
+        <h3>Reserved Section</h3>
+        <p>Something new will come here.</p>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div *ngIf="viewMode === 'league'">
+      <div *ngFor="let group of matchesByLeague" class="league-group">
+        <h2 class="league-title">
+          <a [routerLink]="['/game/league', group.league.id]">{{ group.league.name }}</a> -
+          <a [routerLink]="['/game/season', group.season.id]">{{ group.season.name }}</a> -
+          {{ group.turn.name }}
+        </h2>
+        <div class="match-list">
+          <div *ngFor="let match of group.matches" class="match-item">
+            <a *ngIf="match.homeTeam && match.awayTeam" [routerLink]="['/game/match', match.id]">
+              <div class="team">
+                <a [routerLink]="['/game/team', match.homeTeam.id]">{{ match.homeTeam.name }}</a>
+              </div>
+              <div class="score">{{ match.homeGoals }} - {{ match.awayGoals }}</div>
+              <div class="team">
+                <a [routerLink]="['/game/team', match.awayTeam.id]">{{ match.awayTeam.name }}</a>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="viewMode === 'date'">
+        <div *ngFor="let matchVM of matchesForDate" class="match-item-by-date">
+            <a *ngIf="matchVM.match.homeTeam && matchVM.match.awayTeam" [routerLink]="['/game/match', matchVM.match.id]">
+                <div class="match-info">
+                    <span class="league-name">{{matchVM.league.name}}</span>
+                    <span class="teams">
+                        <a [routerLink]="['/game/team', matchVM.match.homeTeam.id]">{{ matchVM.match.homeTeam.name }}</a> vs
+                        <a [routerLink]="['/game/team', matchVM.match.awayTeam.id]">{{ matchVM.match.awayTeam.name }}</a>
+                    </span>
+                    <span class="score">{{ matchVM.match.homeGoals }} - {{ matchVM.match.awayGoals }}</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="(matchesByLeague.length === 0 && viewMode === 'league') || (matchesForDate.length === 0 && viewMode === 'date')">
+        <p>No matches found for the selected date.</p>
+    </div>
+  </div>
+</div>

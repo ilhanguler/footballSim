@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity MoraleChangelog.
+    -->
+    <changeSet id="00000000000009-1" author="jhipster">
+        <createTable tableName="morale_changelog">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="morale_change" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="morale_before" type="double">
+              <constraints nullable="true" />
+            </column>
+            <column name="team_stats_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="match_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="team_stats_id"
+                                 baseTableName="morale_changelog"
+                                 constraintName="fk_morale_changelog__team_stats_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_stats"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_id"
+                                 baseTableName="morale_changelog"
+                                 constraintName="fk_morale_changelog__match_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match"/>
+    </changeSet>
+    <changeSet id="00000000000009-2" author="jhipster">
+        <loadData
+                  file="config/liquibase/data/morale_changelog.csv"
+                  separator=";"
+                  tableName="morale_changelog">
+            <column name="id" type="numeric"/>
+            <column name="morale_change" type="numeric"/>
+            <column name="morale_before" type="numeric"/>
+            <column name="team_stats_id" type="numeric"/>
+            <column name="match_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
